@@ -18,9 +18,10 @@ io.on('connection', (socket) => {
 
   socket.broadcast.emit('newMsg', generateMessage('Admin', 'New user joined'));
 
-  socket.on('createMsg', (message) => {
+  socket.on('createMsg', (message, callback) => {
     console.log('createMsg', message);
     io.emit('newMsg', generateMessage(message.from, message.text));
+    callback('This is from the server');
     // socket.broadcast.emit('newMsg', {
     //   from: message.from,const port = process.env.PORT || 3000;
     //   text: message.text,
